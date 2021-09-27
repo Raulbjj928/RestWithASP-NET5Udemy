@@ -3,7 +3,6 @@ using RestWithASPNETUdemy.Model.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 
 namespace RestWithASPNETUdemy.Services.Implementations
 {
@@ -15,10 +14,10 @@ namespace RestWithASPNETUdemy.Services.Implementations
         {
             _context = context;
         }
-        
+
         public List<Person> FindAll()
         {
-   
+
             return _context.Persons.ToList();
         }
 
@@ -28,18 +27,18 @@ namespace RestWithASPNETUdemy.Services.Implementations
         }
 
         public Person Create(Person person)
+        {
+            try
             {
-                try
-                {
-                    _context.Add(person);
-                    _context.SaveChanges();
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-                return person;
+                _context.Add(person);
+                _context.SaveChanges();
             }
+            catch (Exception)
+            {
+                throw;
+            }
+            return person;
+        }
         public Person Update(Person person)
         {
             if (!Exists(person.Id)) return new Person();
@@ -55,10 +54,10 @@ namespace RestWithASPNETUdemy.Services.Implementations
                 catch (Exception)
                 {
                     throw;
-                }              
+                }
             }
             return person;
-        }        
+        }
 
         public void Delete(long id)
         {
@@ -75,7 +74,7 @@ namespace RestWithASPNETUdemy.Services.Implementations
                     throw;
                 }
             }
-        }           
+        }
 
         private bool Exists(long id)
         {
