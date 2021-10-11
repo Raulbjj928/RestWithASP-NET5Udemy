@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace RestWithASPNETUdemy.Business.Implementations
 {
-    public class PersonBusinessImplementation : IPersonBusiness
+    public class PersonBusinessImplementation : IPersonBusiness 
     {
         private readonly IRepository<Person> _repository;
         private readonly PersonConverter _converter;
