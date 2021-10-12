@@ -13,6 +13,7 @@ using RestWithASPNETUdemy.Repository.Generic;
 using Serilog;
 using System;
 using System.Collections.Generic;
+using System.Net.Http.Headers;
 
 namespace RestWithASPNETUdemy
 {
@@ -39,6 +40,15 @@ namespace RestWithASPNETUdemy
 
             var connection = Configuration["MySQLConnection:MySQLConnectionString"];
             services.AddDbContext<MySQLContext>(options => options.UseMySql(connection));
+
+            services.AddMvc(options =>
+            {
+                options.RespectBrowserAcceptHeader = true;
+
+                options.FormatterMappings.SetMediaTypeMappingForFormat("xml", MediaTypeHeaderValue.Parse("application/xml").ToString());
+                options.FormatterMappings.SetMediaTypeMappingForFormat("json", MediaTypeHeaderValue.Parse("application/json").ToString());
+            }).AddXmlSerializerFormatters();
+
 
             //Versioning API
             services.AddApiVersioning();
