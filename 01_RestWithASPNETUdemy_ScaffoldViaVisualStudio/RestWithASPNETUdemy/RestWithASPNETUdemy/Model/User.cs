@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace RestWithASPNETUdemy.Model
 {
@@ -27,6 +24,6 @@ namespace RestWithASPNETUdemy.Model
         public string RefreshToken { get; set; }
 
         [Column("refresh_token_expiry_time")]
-        public string RefreshTokenExpiryTipe { get; set; }
+        public DateTime RefreshTokenExpireTime { get; set; }
     }
 }
