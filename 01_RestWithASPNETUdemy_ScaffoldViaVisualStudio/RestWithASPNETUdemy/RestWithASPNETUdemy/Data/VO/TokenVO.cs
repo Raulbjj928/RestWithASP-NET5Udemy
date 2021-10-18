@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace RestWithASPNETUdemy.Data.VO
+﻿namespace RestWithASPNETUdemy.Data.VO
 {
     public class TokenVO
     {
         public TokenVO(
-            bool authenticated, 
-            string created, 
-            string expiration, 
-            string accessToken, 
+            bool authenticated,
+            string created,
+            string expiration,
+            string accessToken,
             string refreshToken
             )
         {

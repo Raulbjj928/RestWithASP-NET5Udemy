@@ -91,6 +91,10 @@ namespace RestWithASPNETUdemy.Business.Implementations
                 refreshToken
                 );
         }
-    
+
+        public bool RevokeToken(string userName)
+        {
+            return _repository.RevokeToken(userName);
+        }
     }
 }
