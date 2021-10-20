@@ -1,10 +1,8 @@
 ﻿using RestWithASPNETUdemy.Data.Converter.Contract;
 using RestWithASPNETUdemy.Data.VO;
 using RestWithASPNETUdemy.Model;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace RestWithASPNETUdemy.Data.Converter.Implementation
 {
@@ -35,7 +33,7 @@ namespace RestWithASPNETUdemy.Data.Converter.Implementation
                 Price = origin.Price
             };
         }
-        
+
         public List<BookVO> Parse(List<Book> origin)
         {
             if (origin == null) return null;

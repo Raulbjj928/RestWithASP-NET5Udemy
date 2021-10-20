@@ -4,10 +4,11 @@ namespace RestWithASPNETUdemy.Hypermedia
 {
     public class HyperMediaLink
     {
-        public string Rel { get; set;}
+        public string Rel { get; set; }
 
         private string href;
-        public string Href {
+        public string Href
+        {
             get
             {
                 object _lock = new object();
@@ -22,7 +23,7 @@ namespace RestWithASPNETUdemy.Hypermedia
                 href = value;
             }
         }
-        public string Type { get; set;}
-        public string Action { get; set;}
+        public string Type { get; set; }
+        public string Action { get; set; }
     }
 }

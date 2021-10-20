@@ -7,9 +7,9 @@ using System.Linq;
 
 namespace RestWithASPNETUdemy.Repository.Generic
 {
-    public class GenericRepository<T> : IRepository<T> where T : BaseEntity
+    public class GenericRepository<T> : IPersonRepository<T> where T : BaseEntity
     {
-        private MySQLContext _context;
+        protected MySQLContext _context;
 
         private DbSet<T> dataset;
 
@@ -18,7 +18,7 @@ namespace RestWithASPNETUdemy.Repository.Generic
             _context = context;
             dataset = _context.Set<T>();
         }
-                        
+
         public List<T> FindAll()
         {
             return dataset.ToList();

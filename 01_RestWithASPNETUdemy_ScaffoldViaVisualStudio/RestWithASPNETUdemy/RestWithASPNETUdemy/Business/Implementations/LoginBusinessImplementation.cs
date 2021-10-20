@@ -18,8 +18,8 @@ namespace RestWithASPNETUdemy.Business.Implementations
         private readonly ITokenService _tokenService;
 
         public LoginBusinessImplementation(
-            TokenConfiguration configuration, 
-            IUserRepository repository, 
+            TokenConfiguration configuration,
+            IUserRepository repository,
             ITokenService tokenService
             )
         {

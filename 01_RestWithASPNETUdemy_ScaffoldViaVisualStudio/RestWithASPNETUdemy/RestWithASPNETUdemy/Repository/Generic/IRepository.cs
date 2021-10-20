@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace RestWithASPNETUdemy.Repository
 {
-    public interface IRepository<T> where T : BaseEntity
+    public interface IPersonRepository<T> where T : BaseEntity
     {
         T Create(T item);
         T FindByID(long id);

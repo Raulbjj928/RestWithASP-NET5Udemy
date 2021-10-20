@@ -12,7 +12,7 @@ namespace RestWithASPNETUdemy.Services.Implementations
     public class TokenService : ITokenService
     {
         private TokenConfiguration _configuration;
-        
+
         public TokenService(TokenConfiguration configuration)
         {
             _configuration = configuration;
@@ -31,7 +31,7 @@ namespace RestWithASPNETUdemy.Services.Implementations
                 signingCredentials: signCredentials
                 );
 
-            string tokenString = new JwtSecurityTokenHandler().WriteToken(options); 
+            string tokenString = new JwtSecurityTokenHandler().WriteToken(options);
             return tokenString;
         }
 
@@ -47,7 +47,8 @@ namespace RestWithASPNETUdemy.Services.Implementations
 
         public ClaimsPrincipal GetPrincipalFromExpiredToken(string token)
         {
-            var tokenValidationParameters = new TokenValidationParameters {
+            var tokenValidationParameters = new TokenValidationParameters
+            {
                 ValidateAudience = false,
                 ValidateIssuer = false,
                 ValidateIssuerSigningKey = true,
@@ -66,9 +67,9 @@ namespace RestWithASPNETUdemy.Services.Implementations
             var jwtSecurityToken = securityToken as JwtSecurityToken;
             if (jwtSecurityToken == null || !jwtSecurityToken.Header.Alg.Equals(
                 SecurityAlgorithms.HmacSha256,
-                StringComparison.InvariantCulture)) 
+                StringComparison.InvariantCulture))
                 throw new SecurityTokenException("Invalid Token");
-            
+
             return principal;
         }
     }

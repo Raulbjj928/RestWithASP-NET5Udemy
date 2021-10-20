@@ -112,10 +112,10 @@ namespace RestWithASPNETUdemy
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", 
-                    new OpenApiInfo 
-                    { 
-                        Title = "Rest API's From 0 at Azure With ASP.NET Core 5 and Docker", 
+                c.SwaggerDoc("v1",
+                    new OpenApiInfo
+                    {
+                        Title = "Rest API's From 0 at Azure With ASP.NET Core 5 and Docker",
                         Version = "v1",
                         Description = "API RESTful developed in course 'Rest API's From 0 at Azure With ASP.NET Core 5 and Docker'",
                         Contact = new OpenApiContact
@@ -135,15 +135,16 @@ namespace RestWithASPNETUdemy
 
 
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IPersonRepository, PersonRepository>();
 
-            services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
+            services.AddScoped(typeof(IPersonRepository<>), typeof(GenericRepository<>));
 
             if (Environment.IsDevelopment())
             {
                 MigrateDatabase(connection);
             }
 
-            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -162,7 +163,8 @@ namespace RestWithASPNETUdemy
 
             app.UseSwagger();
 
-            app.UseSwaggerUI(c => {
+            app.UseSwaggerUI(c =>
+            {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json",
                     "Rest API's From 0 at Azure With ASP.NET Core 5 and Docker");
             });
