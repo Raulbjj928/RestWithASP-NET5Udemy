@@ -9,6 +9,8 @@ namespace RestWithASPNETUdemy.Business
 
         PersonVO FindByID(long id);
 
+        List<PersonVO> FindByName(string firstName, string lastName);
+
         List<PersonVO> FindAll();
 
         PersonVO Update(PersonVO person);
