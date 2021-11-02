@@ -1,6 +1,6 @@
 ﻿namespace RestWithASPNETUdemy.Data.VO
 {
-    public class FileDatailVO
+    public class FileDetailVO
     {
         public string DocumentName { get; set; }
         public string DocType { get; set; }

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using RestWithASPNETUdemy.Data.VO;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -18,20 +17,20 @@ namespace RestWithASPNETUdemy.Business.Implementations
             _basePath = Directory.GetCurrentDirectory() + "\\UploadDir\\";
         }
 
-        public byte[] GetFile(string fileName)
+        public byte[] GetFile(string filename)
         {
-            var filePath = _basePath + fileName;
+            var filePath = _basePath + filename;
             return File.ReadAllBytes(filePath);
         }
 
-        public async Task<FileDatailVO> SaveFileToDisk(IFormFile file)
+        public async Task<FileDetailVO> SaveFileToDisk(IFormFile file)
         {
-            FileDatailVO fileDetail = new FileDatailVO();
+            FileDetailVO fileDetail = new FileDetailVO();
 
             var fileType = Path.GetExtension(file.FileName);
             var baseUrl = _context.HttpContext.Request.Host;
 
-            if (fileType.ToLower() == ".pdf" || fileType.ToLower() == ".jpg" || 
+            if (fileType.ToLower() == ".pdf" || fileType.ToLower() == ".jpg" ||
                 fileType.ToLower() == ".png" || fileType.ToLower() == ".jpeg")
             {
                 var docName = Path.GetFileName(file.FileName);
@@ -40,7 +39,7 @@ namespace RestWithASPNETUdemy.Business.Implementations
                     var destination = Path.Combine(_basePath, "", docName);
                     fileDetail.DocumentName = docName;
                     fileDetail.DocType = fileType;
-                    fileDetail.DocUrl = Path.Combine(baseUrl + "/api/file/v1" + fileDetail.DocumentName);
+                    fileDetail.DocUrl = Path.Combine(baseUrl + "/api/file/v1/" + fileDetail.DocumentName);
 
                     using var stream = new FileStream(destination, FileMode.Create);
                     await file.CopyToAsync(stream);
@@ -49,14 +48,15 @@ namespace RestWithASPNETUdemy.Business.Implementations
             return fileDetail;
         }
 
-        public async Task<List<FileDatailVO>> SaveFilesToDisk(IList<IFormFile> files)
+        public async Task<List<FileDetailVO>> SaveFilesToDisk(IList<IFormFile> files)
         {
-            List<FileDatailVO> list = new List<FileDatailVO>();
+            List<FileDetailVO> list = new List<FileDetailVO>();
             foreach (var file in files)
             {
                 list.Add(await SaveFileToDisk(file));
             }
             return list;
         }
+
     }
 }
