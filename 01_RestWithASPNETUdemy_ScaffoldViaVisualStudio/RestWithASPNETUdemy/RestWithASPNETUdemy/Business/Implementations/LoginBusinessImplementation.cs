@@ -38,7 +38,7 @@ namespace RestWithASPNETUdemy.Business.Implementations
                 new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName)
             };
 
-            var accessToken = _tokenService.GenerateAcessToken(claims);
+            var accessToken = _tokenService.GenerateAccessToken(claims);
             var refreshToken = _tokenService.GenerateRefreshToken();
 
             user.RefreshToken = refreshToken;
@@ -73,7 +73,7 @@ namespace RestWithASPNETUdemy.Business.Implementations
                 user.RefreshToken != refreshToken ||
                 user.RefreshTokenExpireTime <= DateTime.Now) return null;
 
-            accessToken = _tokenService.GenerateAcessToken(principal.Claims);
+            accessToken = _tokenService.GenerateAccessToken(principal.Claims);
             refreshToken = _tokenService.GenerateRefreshToken();
 
             user.RefreshToken = refreshToken;
