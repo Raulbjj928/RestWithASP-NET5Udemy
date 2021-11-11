@@ -145,10 +145,10 @@ namespace RestWithASPNETUdemy
 
             services.AddScoped(typeof(IPersonRepository<>), typeof(GenericRepository<>));
 
-            if (Environment.IsDevelopment())
-            {
-                MigrateDatabase(connection);
-            }
+            //if (Environment.IsDevelopment())
+            //{
+            //    MigrateDatabase(connection);
+            //}
 
 
         }
